@@ -1,5 +1,7 @@
 # Ping Pong Game using ATmega32
 
+https://github.com/Basem0/Atmega32/assets/126205898/d0895b03-c1a1-40e5-a5eb-8d4d32350a64
+
 ## Introduction
 This project implements a simple ping pong game on an ATmega32 microcontroller. The game is displayed on a 4x20 LCD screen and utilizes two external buttons for user interaction. The game logic is handled using interrupts for efficient and responsive gameplay.
 
