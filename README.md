@@ -1,4 +1,4 @@
-# ATmega32 Drivers README
+# ATmega32 Drivers
 
 ## Overview
 This repository contains driver libraries and example codes for interfacing various peripherals with the ATmega32 microcontroller. The drivers cover functionalities such as LCD, push button interrupt, digital I/O, LED control, keypad, seven-segment display, relay control, and DC motor control. Additionally, this repository also includes solutions for tasks provided by Cat Reloaded.
