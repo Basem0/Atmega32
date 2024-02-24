@@ -16,16 +16,16 @@
 #define TIMER_Prescaler8		     8
 #define TIMER_Prescaler64		     64
 #define TIMER_Prescaler256		     256
-#define TIMER_Prescaler1024	    1024
+#define TIMER_Prescaler1024	             1024
 #define TIMER_EXTERNAL_CLOCK_SOURCE_FALING		6
 #define TIMER_EXTERNAL_CLOCK_SOURCE_RISING		7
 
 
 
-#define TIMER0_NORMAL_MODE						  0
+#define TIMER0_NORMAL_MODE		        0
 #define TIMER0_PHASE_CORRECT_PWM_MODE		1
-#define TIMER0_CTC_MODE							    2
-#define TIMER0_FAST_PWM_MODE					  3
+#define TIMER0_CTC_MODE	 		        2
+#define TIMER0_FAST_PWM_MODE	 	        3
 
 #define OC0_DISCONNECTED				0
 #define OC0_TOGGLE							1
