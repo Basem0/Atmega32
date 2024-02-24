@@ -28,16 +28,16 @@
 #define TIMER0_FAST_PWM_MODE	 	        3
 
 #define OC0_DISCONNECTED				0
-#define OC0_TOGGLE							1
-#define OC0_CLEAR								2
-#define OC0_SET									3
+#define OC0_TOGGLE				        1
+#define OC0_CLEAR					2
+#define OC0_SET						3
 
 #define OC0_NON_INVERTING_MODE				2
-#define OC0_INVERTING_MODE						3
+#define OC0_INVERTING_MODE				3
 
-#define TIMER0_F_CPU							1000UL
+#define TIMER0_F_CPU					1000UL
 #define TIMER0_OVF_Counter				256
-#define TIMER0_PERCENTAGE_RATIO		100.0
+#define TIMER0_PERCENTAGE_RATIO		                100.0
 
 
 Std_ReturnType TIMER0_Init(void);
