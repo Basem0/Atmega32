@@ -7,6 +7,12 @@
 
 #include "Timer0_Config.h"
 #include "../INTERRUPT/EXTI_int.h"
+#include "../Std_Types.h"
+#include "../Std_Libraries.h"
+#include "../GPIO/hal_gpio.h"
+#include "Timer0_Config.h"
+#include "Timer0/Timer0_Register.h"
+
 
 volatile static void (* TIMER_OFV_Fun)(void*)=NULL;
 volatile static void* TIMER_OFV_FunArg = NULL;
@@ -225,27 +231,46 @@ Std_ReturnType TIMER0_Delay_ms_Asynch(uint32 delay, void (*funCallBack)(void*), 
 	return ret;
 }
 
-Std_ReturnType TIMER0_enuGeneratePWM(uint8 DutyCycle)
+Std_ReturnType TIMER0_GeneratePWM(uint8 DutyCycle)
 {
-	Std_ReturnType ret=E_NOT_OK;
-
+	Std_ReturnType ret = E_NOT_OK;
+	#if(WAVEFORM_GENERATION_MODE ==TIMER0_FAST_PWM_MODE)
 	if((DutyCycle>0)||(DutyCycle<100))
 	{
 		#if (COMPARE_MATCH_OUTPUT_MODE == OC0_NON_INVERTING_MODE)
-		f32 OVF_TIME=TIMER0_OVF_Counter*((f32)TIMER_CLOCK_SELECT/TIMER0_F_CPU);
+		f32 Local_f32OVFTime=TIMER0_OVF_Counter*((f32)TIMER_CLOCK_SELECT/TIMER0_F_CPU);
 		OCR0=(DutyCycle*TIMER0_OVF_Counter/TIMER0_PERCENTAGE_RATIO);
 
 		#elif (COMPARE_MATCH_OUTPUT_MODE == OC0_INVERTING_MODE)
-		f32 OVF_TIME=TIMER0_OVF_Counter*((f32)TIMER_CLOCK_SELECT/TIMER0_F_CPU);
-		OCR0=OVF_TIME-(DutyCycle*TIMER0_OVF_Counter/TIMER0_PERCENTAGE_RATIO);
+		f32 Local_f32OVFTime=TIMER0_OVF_Counter*((f32)TIMER_CLOCK_SELECT/TIMER0_F_CPU);
+		OCR0=Local_f32OVFTime-(DutyCycle*TIMER0_OVF_Counter/TIMER0_PERCENTAGE_RATIO);
 
 		#endif
-		ret=E_OK;
+		ret = E_OK;
 	}
 	else
 	{
 		ret = E_NOT_OK;
 	}
+
+	#elif(WAVEFORM_GENERATION_MODE ==TIMER0_PHASE_CORRECT_PWM_MODE)
+	if((DutyCycle>0)||(DutyCycle<100))
+	{
+		#if (COMPARE_MATCH_OUTPUT_MODE ==CLEAR_UP_COUNTING_SET_DOWN_COUNTING_OC0)
+		f32 Local_f32OVFTime=TIMER0_OVF_Counter*((f32)TIMER_CLOCK_SELECT/TIMER0_F_CPU);
+		OCR0=(DutyCycle*TIMER0_OVF_Counter/TIMER0_PERCENTAGE_RATIO);
+		#elif (COMPARE_MATCH_OUTPUT_MODE ==SET_UP_COUNTING_CLEAR_DOWN_COUNTING_OC0)
+		f32 Local_f32OVFTime=TIMER0_OVF_Counter*((f32)TIMER_CLOCK_SELECT/TIMER0_F_CPU);
+		OCR0=Local_f32OVFTime-(DutyCycle*TIMER0_OVF_Counter/TIMER0_PERCENTAGE_RATIO);
+		#endif
+		ret = E_OK;
+	}
+	else
+	{
+		ret = E_NOT_OK;
+	}
+
+	#endif
 	return ret;
 }
 
