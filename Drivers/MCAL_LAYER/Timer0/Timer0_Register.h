@@ -9,10 +9,6 @@
 #ifndef TIMER0_REGISTER_H_
 #define TIMER0_REGISTER_H_
 
-#include "../Std_Types.h"
-#include "../Std_Libraries.h"
-#include "../GPIO/hal_gpio.h"
-
 // Timer0 Control register - TCCR0
 #define TCCR0			*((volatile uint8*) 0x53)
 // Timer0 Control register bits
