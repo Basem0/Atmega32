@@ -13,6 +13,7 @@ This repository contains driver libraries and example codes for interfacing vari
   - Seven-segment display
   - Relay
   - DC motor
+  - 
 - Necessary resistors, capacitors, and other supporting components
 
 ## Software Requirements
